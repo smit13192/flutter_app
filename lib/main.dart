@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ms_creation/route/route_generate.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,21 +16,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: "/",
+      onGenerateRoute: RouteGenerater.generateRoute,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       backgroundColor:
                           MaterialStateProperty.all(Colors.deepPurple),
                       elevation: MaterialStateProperty.all(3)),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("/Home");
+                  },
                   child: const Text(
                     "Log In",
                     style: TextStyle(fontSize: 20),
@@ -99,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
                   onTap: () {
-                    debugPrint("hello world");
+                    Navigator.of(context).pushNamed("/error");
                   },
                 ),
               ],
