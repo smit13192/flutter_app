@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  String name;
+  HomePage({super.key,required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -10,8 +11,8 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.blueAccent,
         title: const Text("Home"),
       ),
-      body: const Center(
-        child: Text("My Name Is Smit"),
+      body: Center(
+        child: Text("My Name Is $name"),
       ),
     );
   }

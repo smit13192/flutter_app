@@ -1,20 +1,36 @@
+import 'package:flutter/material.dart';
 import '../page/error.dart';
 import '../page/home.dart';
-import '../main.dart';
-import 'package:flutter/material.dart';
+import '../page/login.dart';
 
 class RouteGenerater {
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    // settings te route name and arguments ley
+
+    // how i pass data into the new page
+    var args = settings.arguments;
+
     switch (settings.name) {
+
+      // this is the login page route
       case "/":
         return MaterialPageRoute(
             builder: (_) => const LoginPage(
                   title: "this is the flutter demo",
                 ));
 
+      // this is the home page route
       case "/Home":
-        return MaterialPageRoute(builder: (_) => const HomePage());
+        // if args is string when go to home page  else goto the error page
+        if (args is String) {
+          return MaterialPageRoute(
+              builder: (_) => HomePage(
+                    name: args,
+                  ));
+        }
+        return MaterialPageRoute(builder: (_) => const ErrorPage());
 
+      // jo akey route no hoy te unknow route hoy to error page open thase
       default:
         return MaterialPageRoute(builder: (_) => const ErrorPage());
     }
