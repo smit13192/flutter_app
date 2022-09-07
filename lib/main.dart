@@ -55,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 10),
               child: TextFormField(
+                keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person),
                     hintText: "Enter Your Name",
@@ -65,8 +66,9 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 5),
               child: TextFormField(
+                keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.security),
+                    prefixIcon: Icon(Icons.security,),
                     hintText: "Enter Your Password",
                     labelText: "Enter Your Password",
                     border: OutlineInputBorder()),
@@ -80,11 +82,9 @@ class _LoginPageState extends State<LoginPage> {
                       padding: MaterialStateProperty.all(
                           const EdgeInsets.symmetric(vertical: 12)),
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.deepPurple),
+                          MaterialStateProperty.all(Colors.blueAccent),
                       elevation: MaterialStateProperty.all(3)),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed("/Home");
-                  },
+                  onPressed: () => Navigator.of(context).pushNamed("/Home"),
                   child: const Text(
                     "Log In",
                     style: TextStyle(fontSize: 20),
@@ -102,9 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                     "Get help with loggin in.",
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
-                  onTap: () {
-                    Navigator.of(context).pushNamed("/error");
-                  },
+                  onTap: () => Navigator.of(context).pushNamed("/error"),
                 ),
               ],
             ),
