@@ -7,6 +7,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // this is the list to the display the data to the generate to the function 
     List catalogItem = makeListCatalog();
 
     return Scaffold(
@@ -15,7 +16,8 @@ class HomePage extends StatelessWidget {
           title: const Text("Home"),
         ),
         body: Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+          padding: const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
+          // this is the listview to the generate list to the catalog
           child: ListView.builder(
             itemBuilder: ((context, index) {
               return makeCardCatalog(catalogItem[index]);
@@ -26,14 +28,16 @@ class HomePage extends StatelessWidget {
   }
 }
 
+// this function to the generate to the catalog display widget
 Widget makeCardCatalog(Catalog catalog) {
+  // make own card view instead of listTile
   return Card(
       elevation: 2,
       child: Row(
         children: [
           SizedBox(
-              height: 100,
-              width: 100,
+              height: 80,
+              width: 80,
               child: Image.asset("assets/images/working.png")),
           Expanded(
             child: Column(
@@ -60,9 +64,10 @@ Widget makeCardCatalog(Catalog catalog) {
       ));
 }
 
+// this function to the generate to the list of the catalog items
 List makeListCatalog() {
   List list = List.generate(
-      10,
+      20,
       (index) => Catalog(
           id: 1,
           title: "Working Employee",
