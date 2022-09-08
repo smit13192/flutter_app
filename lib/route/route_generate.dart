@@ -15,7 +15,7 @@ class RouteGenerater {
       // this is the login page route
       case "/":
         return MaterialPageRoute(
-            builder: (_) => const LoginPage(
+            builder: (context) => const LoginPage(
                   title: "this is the flutter demo",
                 ));
 
@@ -24,15 +24,15 @@ class RouteGenerater {
         // if args is string when go to home page  else goto the error page
         if (args is String) {
           return MaterialPageRoute(
-              builder: (_) => HomePage(
+              builder: (context) => HomePage(
                     name: args,
                   ));
         }
-        return MaterialPageRoute(builder: (_) => const ErrorPage());
+        return MaterialPageRoute(builder: (context) => const ErrorPage());
 
       // jo akey route no hoy te unknow route hoy to error page open thase
       default:
-        return MaterialPageRoute(builder: (_) => const ErrorPage());
+        return MaterialPageRoute(builder: (context) => const ErrorPage());
     }
   }
 }

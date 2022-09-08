@@ -67,13 +67,10 @@ class _LoginPageState extends State<LoginPage> {
                   style: ButtonStyle(
                       padding: MaterialStateProperty.all(
                           const EdgeInsets.symmetric(vertical: 12)),
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.blueAccent),
                       elevation: MaterialStateProperty.all(3)),
 
                   // controller_name.text thi controler no text lay sakiye
-                  onPressed: () => Navigator.of(context)
-                      .pushNamed("/Home", arguments: _namecontroler.text),
+                  onPressed: () => Navigator.pushNamed(context,"/Home", arguments: _namecontroler.text),
                   child: const Text(
                     "Log In",
                     style: TextStyle(fontSize: 20),
@@ -91,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                     "Get help with loggin in.",
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
-                  onTap: () => Navigator.of(context).pushNamed("/error"),
+                  onTap: () => Navigator.pushNamed(context,"/error"),
                 ),
               ],
             ),
