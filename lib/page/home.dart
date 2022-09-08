@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List catalogItem = makeCatalog();
+    List catalogItem = makeListCatalog();
 
     return Scaffold(
         appBar: AppBar(
@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
           title: const Text("Home"),
         ),
         body: Padding(
-          padding: const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
           child: ListView.builder(
             itemBuilder: ((context, index) {
               return makeCardCatalog(catalogItem[index]);
@@ -28,22 +28,41 @@ class HomePage extends StatelessWidget {
 
 Widget makeCardCatalog(Catalog catalog) {
   return Card(
-    margin: const EdgeInsets.symmetric(vertical: 4.0),
-    elevation: 3,
-    child: ListTile(
-      contentPadding:
-          const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-      leading: Image.asset("assets/images/working.png"),
-      title: Text(catalog.title),
-      subtitle: Text(catalog.subTitle),
-      trailing: Text("\$${catalog.salary}"),
-    ),
-  );
+      elevation: 2,
+      child: Row(
+        children: [
+          SizedBox(
+              height: 100,
+              width: 100,
+              child: Image.asset("assets/images/working.png")),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  catalog.title,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(221, 68, 68, 68)),
+                ),
+                Text(
+                  catalog.subTitle,
+                  style: const TextStyle(
+                      fontSize: 15, color: Color.fromARGB(221, 95, 95, 95)),
+                )
+              ],
+            ),
+          ),
+          const Padding(
+              padding: EdgeInsets.only(right: 10), child: Icon(Icons.add_card))
+        ],
+      ));
 }
 
-List makeCatalog() {
+List makeListCatalog() {
   List list = List.generate(
-      20,
+      10,
       (index) => Catalog(
           id: 1,
           title: "Working Employee",
