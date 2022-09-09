@@ -54,6 +54,9 @@ Widget makeCardCatalog(Catalog catalog) {
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 136, 180, 255)),
                 ),
+                const SizedBox(
+                  height: 3,
+                ),
                 Text(
                   catalog.subTitle,
                   style: const TextStyle(
@@ -66,7 +69,7 @@ Widget makeCardCatalog(Catalog catalog) {
               padding: EdgeInsets.only(right: 10),
               child: Icon(
                 Icons.person,
-                color: Colors.blue,
+                color: Color.fromARGB(255, 98, 156, 255),
               ))
         ],
       ));
