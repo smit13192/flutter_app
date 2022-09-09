@@ -1,83 +1,97 @@
 import 'package:flutter/material.dart';
-import 'package:ms_creation/catalog/catalog.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   final String name;
 
   const HomePage({super.key, required this.name});
 
   @override
-  Widget build(BuildContext context) {
-    // this is the list to the display the data to the generate to the function
-    List catalogItem = makeListCatalog(name);
+  State<HomePage> createState() => _HomePageState(name);
+}
 
+class _HomePageState extends State<HomePage> {
+  final List _message = [];
+
+  String name;
+
+  _HomePageState(this.name);
+
+  @override
+  Widget build(BuildContext context) {
+    var messageController = TextEditingController();
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text("Home"),
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
-          // this is the listview to the generate list to the catalog
-          child: ListView.builder(
-            itemBuilder: ((context, index) {
-              return makeCardCatalog(catalogItem[index]);
-            }),
-            itemCount: catalogItem.length,
-          ),
+        body: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return Card(
+                    elevation: 2,
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 6.0, horizontal: 10.0),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0, vertical: 14.0),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            child: Text(name[0]),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    name,
+                                    style: const TextStyle(fontSize: 20),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(_message[index])
+                                ],
+                              ),
+                            ),
+                          ),
+                          const Icon(color: Colors.black54, Icons.person)
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                itemCount: _message.length,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: messageController,
+                      keyboardType: TextInputType.text,
+                      decoration:
+                          const InputDecoration(labelText: "Enter The Message"),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        _message.add(messageController.text);
+                        messageController.clear();
+                        setState(() {});
+                      },
+                      icon: const Icon(color: Colors.blueAccent, Icons.send))
+                ],
+              ),
+            )
+          ],
         ));
   }
-}
-
-// this function to the generate to the catalog display widget
-Widget makeCardCatalog(Catalog catalog) {
-  // make own card view instead of listTile
-  return Card(
-      margin: const EdgeInsets.symmetric(vertical: 6.0),
-      elevation: 1.5,
-      child: Row(
-        children: [
-          SizedBox(
-              height: 80,
-              width: 80,
-              child: Image.asset("assets/images/working.png")),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  catalog.title,
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 156, 156, 156)),
-                ),
-                const SizedBox(
-                  height: 3,
-                ),
-                Text(
-                  catalog.subTitle,
-                  style: const TextStyle(
-                      fontSize: 15, color: Color.fromARGB(255, 134, 134, 134)),
-                )
-              ],
-            ),
-          ),
-          const Padding(
-              padding: EdgeInsets.only(right: 10),
-              child: Icon(
-                Icons.person,
-                color: Color.fromARGB(255, 156, 156, 156),
-              ))
-        ],
-      ));
-}
-
-// this function to the generate to the list of the catalog items
-List makeListCatalog(String name) {
-  List list = List.generate(
-      20,
-      (index) => Catalog(
-          id: 1, title: "Employee Name", subTitle: name, salary: "1000"));
-  return list;
 }
