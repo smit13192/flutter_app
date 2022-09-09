@@ -3,6 +3,7 @@ import 'package:ms_creation/catalog/catalog.dart';
 
 class HomePage extends StatelessWidget {
   final String name;
+
   const HomePage({super.key, required this.name});
 
   @override
@@ -32,12 +33,9 @@ class HomePage extends StatelessWidget {
 Widget makeCardCatalog(Catalog catalog) {
   // make own card view instead of listTile
   return Card(
-    margin: const EdgeInsets.symmetric(vertical: 6.0),
-      shape: RoundedRectangleBorder(
-          side: const BorderSide(color: Color.fromARGB(255, 233, 252, 255)),
-          borderRadius: BorderRadius.circular(10)),
+      margin: const EdgeInsets.symmetric(vertical: 6.0),
       elevation: 1.5,
-      child: Row( 
+      child: Row(
         children: [
           SizedBox(
               height: 80,
@@ -52,7 +50,7 @@ Widget makeCardCatalog(Catalog catalog) {
                   style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 136, 180, 255)),
+                      color: Color.fromARGB(255, 156, 156, 156)),
                 ),
                 const SizedBox(
                   height: 3,
@@ -60,7 +58,7 @@ Widget makeCardCatalog(Catalog catalog) {
                 Text(
                   catalog.subTitle,
                   style: const TextStyle(
-                      fontSize: 15, color: Color.fromARGB(255, 97, 202, 255)),
+                      fontSize: 15, color: Color.fromARGB(255, 134, 134, 134)),
                 )
               ],
             ),
@@ -69,7 +67,7 @@ Widget makeCardCatalog(Catalog catalog) {
               padding: EdgeInsets.only(right: 10),
               child: Icon(
                 Icons.person,
-                color: Color.fromARGB(255, 98, 156, 255),
+                color: Color.fromARGB(255, 156, 156, 156),
               ))
         ],
       ));
