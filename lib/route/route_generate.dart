@@ -22,7 +22,7 @@ class RouteGenerater {
       // this is the home page route
       case "/Home":
         // if args is string when go to home page  else goto the error page
-        if (args is String) {
+        if (args is String && args.isNotEmpty) {
           return MaterialPageRoute(
               builder: (context) => HomePage(
                     name: args,
