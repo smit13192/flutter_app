@@ -13,9 +13,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
-        ),
-        body: ChatScreen(name:name),
-      drawer:  MyDrawer(),
+      ),
+      body: ChatScreen(name: name),
+      drawer: const MyDrawer(),
     );
   }
 }
@@ -75,7 +75,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           ),
                         ),
                       ),
-                      const Icon(color: Colors.black54, Icons.person)
+                      const Icon(Icons.person)
                     ],
                   ),
                 ),
@@ -85,7 +85,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 5),
           child: Row(
             children: [
               Expanded(
@@ -101,7 +101,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     _message.add(messageController.text);
                     setState(() {});
                   },
-                  icon: const Icon(color: Colors.blueAccent, Icons.send))
+                  icon: const Icon(Icons.send))
             ],
           ),
         )

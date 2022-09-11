@@ -19,7 +19,7 @@ class _MyDrawerState extends State<MyDrawer> {
             Container(
               height: 200,
               width: double.infinity,
-              decoration: const BoxDecoration(color: Colors.blue),
+              decoration: const BoxDecoration(color: Colors.purple),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
