@@ -13,6 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   final _namecontroler = TextEditingController();
   final _emailcontroller = TextEditingController();
   final _password = TextEditingController();
+  bool isNotSeen = true;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Image.asset("assets/images/working.png"),
             ),
             const Padding(
-              padding: EdgeInsets.only(bottom: 20),
+              padding: EdgeInsets.only(bottom: 20, top: 20),
               child: Text("MS Creation",
                   style: TextStyle(
                       fontSize: 30,
@@ -53,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _emailcontroller,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: Icon(Icons.email_outlined),
                     labelText: "Enter Your Email Address",
                     border: OutlineInputBorder()),
               ),
@@ -63,14 +64,23 @@ class _LoginPageState extends State<LoginPage> {
               child: TextFormField(
                 controller: _password,
                 keyboardType: TextInputType.text,
-                decoration: const InputDecoration(
-                    prefixIcon: Icon(
+                decoration: InputDecoration(
+                    prefixIcon: const Icon(
                       Icons.security,
                     ),
                     labelText: "Enter Your Password",
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isNotSeen = !isNotSeen;
+                          });
+                        },
+                        icon: Icon(isNotSeen
+                            ? Icons.visibility_off
+                            : Icons.visibility)),
                     // OutlineInputBorder thi form field ma outline avi jay
-                    border: OutlineInputBorder()),
-                obscureText: true,
+                    border: const OutlineInputBorder()),
+                obscureText: isNotSeen,
               ),
             ),
             Padding(
