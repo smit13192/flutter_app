@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ms_creation/utilites/drawer.dart';
+
+import 'DashBoardPage.dart';
 
 class HomePage extends StatelessWidget {
   final String name;
@@ -8,11 +11,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: const Text("Home"),
+      appBar: AppBar(
+        title: const Text("Home"),
         ),
-        body: ChatScreen(name: name));
+        body: ChatScreen(name:name),
+      drawer:  MyDrawer(),
+    );
   }
 }
 
