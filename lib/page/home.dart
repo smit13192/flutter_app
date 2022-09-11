@@ -5,8 +5,9 @@ import 'DashBoardPage.dart';
 
 class HomePage extends StatelessWidget {
   final String name;
+  final String email;
 
-  const HomePage({super.key, required this.name});
+  const HomePage({super.key, required this.name,required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
         title: const Text("Home"),
       ),
       body: ChatScreen(name: name),
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(name: name,email: email),
     );
   }
 }
@@ -54,7 +55,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: Row(
                     children: [
                       CircleAvatar(
-                        child: Text(widget.name[0],
+                        child: Text(widget.name[0].toUpperCase(),
                             style: const TextStyle(fontSize: 20)),
                       ),
                       Expanded(

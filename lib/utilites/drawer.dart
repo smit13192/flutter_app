@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatefulWidget {
-  const MyDrawer({Key? key}) : super(key: key);
 
+  MyDrawer({Key? key,required  this.name,required this.email}) : super(key: key);
+  String name;
+  String email;
   @override
   State<MyDrawer> createState() => _MyDrawerState();
 }
@@ -17,6 +19,7 @@ class _MyDrawerState extends State<MyDrawer> {
         child: Column(
           children: [
             Container(
+              padding: const EdgeInsets.only(top:20),
               height: 200,
               width: double.infinity,
               decoration: const BoxDecoration(color: Colors.purple),
@@ -32,16 +35,16 @@ class _MyDrawerState extends State<MyDrawer> {
                           image: AssetImage("assets/images/boy.png")),
                     ),
                   ),
-                  const Text(
-                    "Smit Monpara",
-                    style: TextStyle(
+                  Text(
+                    widget.name,
+                    style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 20),
                   ),
-                  const Text(
-                    "monparasmit1@gmail.com",
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  Text(
+                    widget.email,
+                    style:const TextStyle(color: Colors.white, fontSize: 15),
                   )
                 ],
               ),

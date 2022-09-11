@@ -8,7 +8,6 @@ class ErrorPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Error"),
-        backgroundColor: Colors.blueAccent,
       ),
       body: const Center(
         child: Text("Error"),

@@ -11,6 +11,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _namecontroler = TextEditingController();
+  final _emailcontroller = TextEditingController();
+  final _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Image.asset("assets/images/working.png"),
             ),
             const Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
+              padding: EdgeInsets.only(bottom: 20),
               child: Text("MS Creation",
                   style: TextStyle(
                       fontSize: 30,
@@ -33,14 +35,13 @@ class _LoginPageState extends State<LoginPage> {
                   textAlign: TextAlign.center),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 5),
               child: TextFormField(
                 // this is controller to controlle to the formfield value
                 controller: _namecontroler,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person),
-                    hintText: "Enter Your Name",
                     labelText: "Enter Your Name",
                     border: OutlineInputBorder()),
               ),
@@ -48,14 +49,25 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 5),
               child: TextFormField(
+                // this is controller to controlle to the formfield value
+                controller: _emailcontroller,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.person),
+                    labelText: "Enter Your Email Address",
+                    border: OutlineInputBorder()),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 5),
+              child: TextFormField(
+                controller: _password,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                     prefixIcon: Icon(
                       Icons.security,
                     ),
-                    hintText: "Enter Your Password",
                     labelText: "Enter Your Password",
-
                     // OutlineInputBorder thi form field ma outline avi jay
                     border: OutlineInputBorder()),
                 obscureText: true,
@@ -70,27 +82,24 @@ class _LoginPageState extends State<LoginPage> {
                       elevation: MaterialStateProperty.all(3)),
 
                   // controller_name.text thi controler no text lay sakiye
-                  onPressed: () => Navigator.pushNamed(context,"/Home", arguments: _namecontroler.text),
+                  onPressed: () => Navigator.pushNamed(context, "/Home",
+                          arguments: [
+                            _namecontroler.text,
+                            _emailcontroller.text,
+                            _password.text
+                          ]),
                   child: const Text(
                     "Log In",
                     style: TextStyle(fontSize: 20),
                   )),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "Forgotten your login details? ",
-                  style: TextStyle(fontSize: 12),
-                ),
-                InkWell(
-                  child: const Text(
-                    "Get help with loggin in.",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                  onTap: () => Navigator.pushNamed(context,"/error"),
-                ),
-              ],
+            InkWell(
+              child: const Text(
+                "Get help with logging in.",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              ),
+              onTap: () => Navigator.pushNamed(context, "/error"),
             ),
           ],
         ),

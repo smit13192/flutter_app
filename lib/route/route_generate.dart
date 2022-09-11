@@ -11,7 +11,6 @@ class RouteGenerater {
     var args = settings.arguments;
 
     switch (settings.name) {
-
       // this is the login page route
       case "/":
         return MaterialPageRoute(
@@ -21,12 +20,15 @@ class RouteGenerater {
 
       // this is the home page route
       case "/Home":
-        // if args is string when go to home page  else goto the error page
-        if (args is String && args.isNotEmpty) {
-          return MaterialPageRoute(
-              builder: (context) => HomePage(
-                    name: args,
-                  ));
+        if (args is List<String>) {
+          // if args is string when go to home page  else goto the error page
+          if (args[0].isNotEmpty && args[1].isNotEmpty && args[2].isNotEmpty) {
+            return MaterialPageRoute(
+                builder: (context) => HomePage(
+                      name: args[0],
+                      email: args[1],
+                    ));
+          }
         }
         return MaterialPageRoute(builder: (context) => const ErrorPage());
 
