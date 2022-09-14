@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatefulWidget {
-
-  MyDrawer({Key? key,required  this.name,required this.email}) : super(key: key);
+  MyDrawer({Key? key, required this.name, required this.email})
+      : super(key: key);
   String name;
   String email;
+
   @override
   State<MyDrawer> createState() => _MyDrawerState();
 }
@@ -19,10 +20,10 @@ class _MyDrawerState extends State<MyDrawer> {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.only(top:20),
+              padding: const EdgeInsets.only(top: 20),
               height: 200,
               width: double.infinity,
-              decoration: const BoxDecoration(color: Colors.purple),
+              decoration: const BoxDecoration(color: Colors.blue),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -44,7 +45,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   ),
                   Text(
                     widget.email,
-                    style:const TextStyle(color: Colors.white, fontSize: 15),
+                    style: const TextStyle(color: Colors.white, fontSize: 15),
                   )
                 ],
               ),

@@ -26,12 +26,14 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.only(top: 20),
               child: Image.asset("assets/images/working.png"),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 20, top: 20),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 30, top: 20),
               child: Text("MS Creation",
                   style: TextStyle(
+                    letterSpacing: 2,
+                      fontFamily: "Lato",
                       fontSize: 30,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.black12.withOpacity(0.8),
                       fontStyle: FontStyle.italic),
                   textAlign: TextAlign.center),
             ),
