@@ -1,13 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:ms_creation/utilites/drawer.dart';
+import 'dart:convert';
 
-import 'DashBoardPage.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:ms_creation/catalog/catalog.dart';
+import 'package:ms_creation/utilites/drawer.dart';
 
 class HomePage extends StatelessWidget {
   final String name;
   final String email;
 
-  const HomePage({super.key, required this.name,required this.email});
+  const HomePage({super.key, required this.name, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -15,98 +17,75 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Home"),
       ),
-      body: ChatScreen(name: name),
-      drawer: MyDrawer(name: name,email: email),
+      body: const ChatScreen(),
+      drawer: MyDrawer(name: name, email: email),
     );
   }
 }
 
 // ignore: must_be_immutable
 class ChatScreen extends StatefulWidget {
-  ChatScreen({Key? key, required this.name}) : super(key: key);
-  String name;
+  const ChatScreen({Key? key}) : super(key: key);
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  var messageController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
 
-  final List _message = [];
+  loadData() async {
+    await Future.delayed(const Duration(seconds: 2));
+    var catalogJson = await rootBundle.loadString("assets/files/item.json");
+    final productdata = jsonDecode(catalogJson);
+    CatalogItem.items = List.from(productdata)
+        .map<Catalog>((item) => Catalog.fromJson(item))
+        .toList();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              return Card(
-                // give the border radius
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                elevation: 2,
-                margin:
-                    const EdgeInsets.symmetric(vertical: 6.0, horizontal: 10.0),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0, vertical: 14.0),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        child: Text(widget.name[0].toUpperCase(),
-                            style: const TextStyle(fontSize: 20)),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.name,
-                                style: const TextStyle(fontSize: 20),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(_message[index])
-                            ],
-                          ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.builder(
+          itemCount: CatalogItem.items.length,
+          itemBuilder: (context, index) {
+            return Card(
+              margin: const EdgeInsets.all(8.0),
+              elevation: 2,
+              child: Row(children: [
+                Container(
+                    padding: const EdgeInsets.all(8.0),
+                    height: 80,
+                    width: 80,
+                    child: Image.network(
+                        CatalogItem.items[index].photo.toString())),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          CatalogItem.items[index].name,
+                          style: const TextStyle(fontSize: 20),
                         ),
-                      ),
-                      const Icon(Icons.person)
-                    ],
+                        Text(
+                          "${CatalogItem.items[index].salary}",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-            itemCount: _message.length,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 5),
-          child: Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: messageController,
-                  keyboardType: TextInputType.text,
-                  decoration:
-                      const InputDecoration(labelText: "Enter The Message"),
-                ),
-              ),
-              IconButton(
-                  onPressed: () {
-                    _message.add(messageController.text);
-                    setState(() {});
-                  },
-                  icon: const Icon(Icons.send))
-            ],
-          ),
-        )
-      ],
+                )
+              ]),
+            );
+          }),
     );
   }
 }
