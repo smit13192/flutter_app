@@ -1,20 +1,20 @@
 class CatalogItem {
-  static List<Catalog> items = [];
+  static List<Item> items = [];
 }
 
-class Catalog {
+class Item {
   int id;
   String name;
   int salary;
   String photo;
 
-  Catalog(
+  Item(
       {required this.id,
       required this.name,
       required this.salary,
       required this.photo});
 
-  factory Catalog.fromJson(Map<String, dynamic> map) => Catalog(
+  factory Item.fromJson(Map<String, dynamic> map) => Item(
       id: map["id"], name: map["name"], salary: map["salary"], photo: map["photo"]);
 
   toJson() => {"id": id, "name": name, "salary": salary, "photo": photo};

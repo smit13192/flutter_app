@@ -11,7 +11,7 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-  var currentPage = DrawerSelection.home;
+  var currentPage = DrawerSelection.none;
 
   @override
   Widget build(BuildContext context) {
@@ -142,5 +142,6 @@ enum DrawerSelection {
   notes,
   settings,
   privacy,
-  feedback
+  feedback,
+  none
 }

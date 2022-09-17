@@ -15,23 +15,30 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home"),
+        centerTitle: true,
+        title: const Text("Catalog App"),
+        actions: const [
+          Padding(padding: EdgeInsets.only(right: 10), child: Icon(Icons.home)),
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Icon(Icons.settings))
+        ],
       ),
-      body: const ChatScreen(),
+      body: const ProductScreen(),
       drawer: MyDrawer(name: name, email: email),
     );
   }
 }
 
 // ignore: must_be_immutable
-class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+class ProductScreen extends StatefulWidget {
+  const ProductScreen({Key? key}) : super(key: key);
 
   @override
-  State<ChatScreen> createState() => _ChatScreenState();
+  State<ProductScreen> createState() => _ProductScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ProductScreenState extends State<ProductScreen> {
   @override
   void initState() {
     super.initState();
@@ -43,49 +50,56 @@ class _ChatScreenState extends State<ChatScreen> {
     var catalogJson = await rootBundle.loadString("assets/files/item.json");
     final productdata = jsonDecode(catalogJson);
     CatalogItem.items = List.from(productdata)
-        .map<Catalog>((item) => Catalog.fromJson(item))
+        .map<Item>((item) => Item.fromJson(item))
         .toList();
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView.builder(
-          itemCount: CatalogItem.items.length,
-          itemBuilder: (context, index) {
-            return Card(
-              margin: const EdgeInsets.all(8.0),
-              elevation: 2,
-              child: Row(children: [
-                Container(
-                    padding: const EdgeInsets.all(8.0),
-                    height: 80,
-                    width: 80,
-                    child: Image.network(
-                        CatalogItem.items[index].photo.toString())),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          CatalogItem.items[index].name,
-                          style: const TextStyle(fontSize: 20),
+    return (CatalogItem.items.isNotEmpty)
+        ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.builder(
+                itemCount: CatalogItem.items.length,
+                itemBuilder: (context, index) => Card(
+                      margin: const EdgeInsets.all(8.0),
+                      elevation: 3,
+                      child: Row(children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              image: DecorationImage(
+                                  image: NetworkImage(CatalogItem
+                                      .items[index].photo
+                                      .toString()))),
+                          margin: const EdgeInsets.all(8.0),
+                          height: 80,
+                          width: 80,
                         ),
-                        Text(
-                          "${CatalogItem.items[index].salary}",
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ]),
-            );
-          }),
-    );
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  CatalogItem.items[index].name,
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                                Text(
+                                  "${CatalogItem.items[index].salary}",
+                                  style: const TextStyle(fontSize: 15),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ]),
+                    )),
+          )
+        : const Center(
+            child: CircularProgressIndicator(),
+          );
   }
 }
