@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ms_creation/page/CartPage.dart';
 import '../page/error.dart';
 import '../page/home.dart';
 import '../page/login.dart';
@@ -31,6 +32,10 @@ class RouteGenerater {
           }
         }
         return MaterialPageRoute(builder: (context) => const ErrorPage());
+
+        // this is the cart page route
+      case "/cart":
+        return MaterialPageRoute(builder: (context) => const CartItem());
 
       // jo akey route no hoy te unknow route hoy to error page open thase
       default:

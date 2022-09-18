@@ -1,5 +1,6 @@
 class CatalogItem {
-  static List<Item> items = [];
+  List<Item> items = [];
+  static List<Item> additem = [];
 }
 
 class Item {

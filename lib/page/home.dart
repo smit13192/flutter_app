@@ -15,18 +15,35 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 239, 239, 239),
       body: SafeArea(
+        // safe area means to navigastion bar area is no contain in the body
         child: Container(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.only(left: 8, right: 8, bottom: 45, top: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [CatalogHeader(), Expanded(child: ProductScreen())],
+            children: const [
+              // catalog home page header
+              CatalogHeader(),
+              // this is the list of the catalog items
+              Expanded(child: ProductScreen())
+            ],
           ),
         ),
+      ),
+
+      // push to the cart page
+      floatingActionButton: FloatingActionButton(
+        tooltip: "${CatalogItem.additem.length}",
+        elevation: 5,
+        onPressed: () {
+          Navigator.pushNamed(context, "/cart");
+        },
+        child: const Icon(Icons.shopping_cart),
       ),
     );
   }
 }
 
+// this is the header of the catalog page
 class CatalogHeader extends StatelessWidget {
   const CatalogHeader({super.key});
 
@@ -55,6 +72,7 @@ class CatalogHeader extends StatelessWidget {
 }
 
 // ignore: must_be_immutable
+// this is the product screen and this is the statefullwidget
 class ProductScreen extends StatefulWidget {
   const ProductScreen({Key? key}) : super(key: key);
 
@@ -63,38 +81,55 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  // when this class is restart when initState is run
   @override
   void initState() {
     super.initState();
     loadData();
   }
 
+  CatalogItem product = CatalogItem();
+
+  // this is the load data to the json file function
   loadData() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2)); //delay 2 second
+
+    // get string to the json
     var catalogJson = await rootBundle.loadString("assets/files/catalog.json");
+
+    // decode string to give in the json
     final jsondecodedata = jsonDecode(catalogJson);
+
+    // json file ni andar no product name ni list use karva mate
     var productdata = jsondecodedata["products"];
-    CatalogItem.items = List.from(productdata)
+
+    // make the list of the Item
+    product.items = List.from(productdata)
         .map<Item>((item) => Item.fromJson(item))
         .toList();
+
+    // setState to change the data
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return (CatalogItem.items.isNotEmpty)
+    // list view to display catalog item
+    return (product.items.isNotEmpty)
         ? ListView.builder(
             shrinkWrap: true,
-            itemCount: CatalogItem.items.length,
+            itemCount: product.items.length,
             itemBuilder: (context, index) => CatalogListItem(
-                  catalog: CatalogItem.items[index],
+                  catalog: product.items[index],
                 ))
         : const Center(
             child: CircularProgressIndicator(),
           );
+    // if catalog item is empty when display circularproggressindicator
   }
 }
 
+// this is the catalogListIteam widget
 // ignore: must_be_immutable
 class CatalogListItem extends StatefulWidget {
   Item catalog;
@@ -111,14 +146,14 @@ class _CatalogListItemState extends State<CatalogListItem> {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       margin: const EdgeInsets.all(8.0),
-      elevation: 2,
+      elevation: 1,
       child: Row(children: [
         Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: const Color.fromARGB(255, 239, 239, 239)),
-          margin: const EdgeInsets.all(10.0),
+          margin: const EdgeInsets.all(15.0),
           height: 100,
           width: 140,
           child: Image.network(widget.catalog.image.toString()),
@@ -140,7 +175,9 @@ class _CatalogListItemState extends State<CatalogListItem> {
                 Text(
                   widget.catalog.desc,
                   style: const TextStyle(
-                      fontSize: 15, color: Color.fromARGB(255, 17, 0, 169)),
+                      overflow: TextOverflow.clip,
+                      fontSize: 15,
+                      color: Color.fromARGB(255, 17, 0, 169)),
                 ),
                 ButtonBar(
                   buttonPadding: EdgeInsets.zero,
@@ -149,14 +186,19 @@ class _CatalogListItemState extends State<CatalogListItem> {
                     Text(
                       "\$${widget.catalog.price}",
                       style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 17, 0, 169)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 20.0),
                       child: ElevatedButton(
-                          onPressed: () {}, child: const Icon(Icons.add_card)),
+                          onPressed: () {
+                            if (!CatalogItem.additem.contains(widget.catalog)) {
+                              CatalogItem.additem.add(widget.catalog);
+                            }
+                          },
+                          child: const Icon(Icons.add_card)),
                     )
                   ],
                 )
