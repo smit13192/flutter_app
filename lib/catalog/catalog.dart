@@ -5,17 +5,33 @@ class CatalogItem {
 class Item {
   int id;
   String name;
-  int salary;
-  String photo;
+  String desc;
+  num price;
+  String color;
+  String image;
 
   Item(
       {required this.id,
       required this.name,
-      required this.salary,
-      required this.photo});
+      required this.desc,
+      required this.price,
+      required this.color,
+      required this.image});
 
   factory Item.fromJson(Map<String, dynamic> map) => Item(
-      id: map["id"], name: map["name"], salary: map["salary"], photo: map["photo"]);
+      id: map["id"],
+      name: map["name"],
+      desc: map["desc"],
+      price: map["price"],
+      color: map["color"],
+      image: map["image"]);
 
-  toJson() => {"id": id, "name": name, "salary": salary, "photo": photo};
+  toMap() => {
+        "id": id,
+        "name": name,
+        "desc": desc,
+        "price": price,
+        "color": color,
+        "image": image
+      };
 }

@@ -14,8 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'MS Creation',
       theme: ThemeData(
-        iconTheme: const IconThemeData(color: Colors.blue),
-        primarySwatch: Colors.blue,
+        iconTheme: const IconThemeData(color: Color.fromARGB(255, 10, 0, 100)),
+        primaryColor: const Color.fromARGB(255, 10, 0, 100),
+        primarySwatch: Colors.deepPurple
       ),
       initialRoute: "/",
       onGenerateRoute: RouteGenerater.generateRoute,
