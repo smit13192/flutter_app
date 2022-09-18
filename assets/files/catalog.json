@@ -63,6 +63,30 @@
             "price": 899,
             "color": "#7c95eb",
             "image": "https://images.samsung.com/is/image/samsung/p6pim/za/galaxy-s21/gallery/za-clear-cover-galaxy-s21-5g-ef-qg991ttegww-363168624?$720_576_PNG$"
+        },
+        {
+            "id": 9,
+            "name": "Samsung Galaxy A71",
+            "desc": "Samsung Galaxy A71 2020 edition",
+            "price": 399,
+            "color": "#7c95eb",
+            "image": "https://freebiescloud.com/wp-content/uploads/2020/10/4-58.png"
+        },
+        {
+            "id": 10,
+            "name": "Samsung Galaxy S22 Ultra",
+            "desc": "Thin and light with s pen",
+            "price": 1149,
+            "color": "#7c95eb",
+            "image": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1662439500/Croma%20Assets/Communication/Mobiles/Images/248911_nhv3an.png/mxw_640,f_auto"
+        },
+        {
+            "id": 11,
+            "name": "M1 Macbook Air Blue",
+            "desc": "Blue Color",
+            "price": 1099,
+            "color": "#7c95eb",
+            "image": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1655189168/Croma%20Assets/Computers%20Peripherals/Laptop/Images/256711_lgcfox.png/mxw_640,f_auto"
         }
     ]
 }
