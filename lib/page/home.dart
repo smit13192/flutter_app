@@ -160,7 +160,7 @@ class _CatalogListItemState extends State<CatalogListItem> {
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(right: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
