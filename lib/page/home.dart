@@ -154,7 +154,6 @@ class _CatalogListItemState extends State<CatalogListItem> {
               borderRadius: BorderRadius.circular(10),
               color: const Color.fromARGB(255, 239, 239, 239)),
           margin: const EdgeInsets.all(15.0),
-          height: 100,
           width: 140,
           child: Image.network(widget.catalog.image.toString()),
         ),
