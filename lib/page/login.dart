@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.only(bottom: 30, top: 20),
               child: Text("MS Creation",
                   style: TextStyle(
-                    letterSpacing: 2,
+                      letterSpacing: 2,
                       fontFamily: "Lato",
                       fontSize: 30,
                       color: Colors.black12.withOpacity(0.8),

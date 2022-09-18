@@ -33,7 +33,7 @@ class RouteGenerater {
         }
         return MaterialPageRoute(builder: (context) => const ErrorPage());
 
-        // this is the cart page route
+      // this is the cart page route
       case "/cart":
         return MaterialPageRoute(builder: (context) => const CartItem());
 
