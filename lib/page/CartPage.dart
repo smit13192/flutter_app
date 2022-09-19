@@ -13,7 +13,8 @@ class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 239, 239, 239),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: AppBar(title: const Text("Cart"),),
       body: SafeArea(
         child: CatalogItem.additem.isNotEmpty
             ? ListView.builder(
@@ -29,7 +30,7 @@ class _CartItemState extends State<CartItem> {
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: const Color.fromARGB(255, 239, 239, 239)),
+                            color: Theme.of(context).scaffoldBackgroundColor),
                         margin: const EdgeInsets.all(10.0),
                         height: 100,
                         width: 140,
@@ -86,11 +87,10 @@ class _CartItemState extends State<CartItem> {
                     ]),
                   );
                 })
-            : const Center(
+            : Center(
                 child: Text(
                 "Bucket Is Empty",
-                style: TextStyle(
-                    fontSize: 20, color: Color.fromARGB(255, 10, 0, 100)),
+                style: Theme.of(context).textTheme.headlineSmall,
               )),
       ),
     );

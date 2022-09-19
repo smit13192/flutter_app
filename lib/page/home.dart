@@ -5,15 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:ms_creation/catalog/catalog.dart';
 
 class HomePage extends StatelessWidget {
-  final String name;
-  final String email;
-
-  const HomePage({super.key, required this.name, required this.email});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 239, 239, 239),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         // safe area means to navigastion bar area is no contain in the body
         child: Container(
@@ -50,22 +47,17 @@ class CatalogHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, bottom: 20, top: 25),
+      padding: const EdgeInsets.only(left: 20, bottom: 20, top: 20),
       child:
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           "Catalog App",
-          style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 10, 0, 100)),
-        ),
-        SizedBox(
+          style: Theme.of(context).textTheme.headlineLarge),
+        const SizedBox(
           height: 5,
         ),
         Text("Treanding App",
-            style:
-                TextStyle(fontSize: 20, color: Color.fromARGB(255, 10, 0, 100)))
+            style:Theme.of(context).textTheme.headlineSmall)
       ]),
     );
   }
@@ -144,6 +136,7 @@ class _CatalogListItemState extends State<CatalogListItem> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Theme.of(context).cardColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       margin: const EdgeInsets.all(8.0),
       elevation: 1,
@@ -152,7 +145,7 @@ class _CatalogListItemState extends State<CatalogListItem> {
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: const Color.fromARGB(255, 239, 239, 239)),
+              color: Theme.of(context).scaffoldBackgroundColor),
           margin: const EdgeInsets.all(15.0),
           width: 140,
           child: Image.network(widget.catalog.image.toString()),

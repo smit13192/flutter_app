@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ms_creation/route/route_generate.dart';
+import 'package:ms_creation/theme/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,12 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MS Creation',
-      theme: ThemeData(
-          iconTheme:
-              const IconThemeData(color: Color.fromARGB(255, 10, 0, 100)),
-          primaryColor: const Color.fromARGB(255, 10, 0, 100),
-          primarySwatch: Colors.deepPurple),
-      initialRoute: "/",
+      themeMode: ThemeMode.system,
+      theme: MyTheme.lightTheme(context),
+      darkTheme: MyTheme.darkTheme(context),
+      initialRoute: "/Home",
       onGenerateRoute: RouteGenerater.generateRoute,
     );
   }
