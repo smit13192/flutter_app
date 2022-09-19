@@ -23,7 +23,8 @@ class MyTheme {
                 backgroundColor: MaterialStateProperty.all(darkPurpleColor))),
         fontFamily: "Lato",
         appBarTheme: AppBarTheme(
-          titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
+          titleTextStyle: const TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           backgroundColor: darkPurpleColor,
           elevation: 0.0,
           iconTheme: const IconThemeData(color: Colors.white),
@@ -50,7 +51,8 @@ class MyTheme {
                 foregroundColor: MaterialStateProperty.all(darkPurpleColor),
                 backgroundColor: MaterialStateProperty.all(creamColor))),
         appBarTheme: const AppBarTheme(
-          titleTextStyle: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold),
+          titleTextStyle: TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           iconTheme: IconThemeData(color: Colors.white),

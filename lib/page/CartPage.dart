@@ -14,7 +14,9 @@ class _CartItemState extends State<CartItem> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(title: const Text("Cart"),),
+      appBar: AppBar(
+        title: const Text("Cart"),
+      ),
       body: SafeArea(
         child: CatalogItem.additem.isNotEmpty
             ? ListView.builder(

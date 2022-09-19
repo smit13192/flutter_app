@@ -12,7 +12,7 @@ class RouteGenerater {
       case "/Home":
         return MaterialPageRoute(builder: (context) => const HomePage());
 
-      case "/cart":
+      case "/Cart":
         return MaterialPageRoute(builder: (context) => const CartItem());
 
       // jo akey route no hoy te unknow route hoy to error page open thase

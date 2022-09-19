@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
         tooltip: "${CatalogItem.additem.length}",
         elevation: 5,
         onPressed: () {
-          Navigator.pushNamed(context, "/cart");
+          Navigator.pushNamed(context, "/Cart");
         },
         child: const Icon(Icons.shopping_cart),
       ),
@@ -48,16 +48,12 @@ class CatalogHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 20, bottom: 20, top: 20),
-      child:
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(
-          "Catalog App",
-          style: Theme.of(context).textTheme.headlineLarge),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text("Catalog App", style: Theme.of(context).textTheme.headlineLarge),
         const SizedBox(
           height: 5,
         ),
-        Text("Treanding App",
-            style:Theme.of(context).textTheme.headlineSmall)
+        Text("Treanding App", style: Theme.of(context).textTheme.headlineSmall)
       ]),
     );
   }
