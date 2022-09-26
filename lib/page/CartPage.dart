@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ms_creation/catalog/catalog.dart';
-import 'package:ms_creation/page/home.dart';
 
 class CartItem extends StatefulWidget {
   const CartItem({Key? key}) : super(key: key);

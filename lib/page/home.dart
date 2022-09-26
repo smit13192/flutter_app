@@ -59,7 +59,6 @@ class CatalogHeader extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
 // this is the product screen and this is the statefullwidget
 class ProductScreen extends StatefulWidget {
   const ProductScreen({Key? key}) : super(key: key);
@@ -118,11 +117,10 @@ class _ProductScreenState extends State<ProductScreen> {
 }
 
 // this is the catalogListIteam widget
-// ignore: must_be_immutable
 class CatalogListItem extends StatefulWidget {
-  Item catalog;
+  final Item catalog;
 
-  CatalogListItem({super.key, required this.catalog});
+  const CatalogListItem({super.key, required this.catalog});
 
   @override
   State<CatalogListItem> createState() => _CatalogListItemState();
